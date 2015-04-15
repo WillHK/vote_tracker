@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function() {
   var images = [];
+  var chart;
   var imagePaths = ["01.jpg","02.jpg","03.jpg","04.jpg","05.jpg","06.jpg","07.jpg","08.jpg","09.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg"];
   var Photo = function(url) {
     this.url = 'img/' + url;
@@ -34,28 +35,32 @@ document.addEventListener("DOMContentLoaded", function() {
       this.rightVotes++;
     },
     updateChart: function () {
-    var chart;
-    pieData[0].value = Tracker.leftVotes;
-    pieData[1].value = Tracker.rightVotes;
-    chart = new Chart(scoreChart).Pie(pieData, pieOptions);
+
+    chart.segments[1].value = Tracker.leftVotes;
+    chart.segments[0].value = Tracker.rightVotes;
+    chart.update();
   }
   };
   var scoreChart = document.getElementById('scoreChart').getContext('2d');
   var pieData = [
     {
-      value : 20,
-      color : "#878BB6"
+      value : 1,
+      color : "#FF0000",
+      highlight: "#555555",
+      label: "Right Kittens"
     },
     {
-      value : 40,
-      color : "#4ACAB4"
+      value : 1,
+      color : "#0000FF",
+      highlight: "#555555",
+      label: "Left Kittens"
     }
   ];
   var pieOptions = {
     segmentShowStroke : false,
     animateScale : false
   }
+  chart = new Chart(scoreChart).Pie(pieData, pieOptions);
   Tracker.newImages();
-  Tracker.updateChart();
   window.Tracker = Tracker;
 });
