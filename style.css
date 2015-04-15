@@ -1,0 +1,21 @@
+
+.voteArea:hover {
+  border: 5px black solid;
+}
+#container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+#kittenWarz {
+  width: 50%;
+  margin: 0 auto;
+}
+.voteArea {
+  border: 5px white solid;
+  height: 310px;
+  width: 250px;
+  padding: 1em;
+}
