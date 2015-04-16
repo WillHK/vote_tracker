@@ -1,19 +1,18 @@
-document.addEventListener("DOMContentLoaded", function() {
+$(function() {
   var Tracker = window.Tracker;
+  var images = window.images;
   var updateChart = window.updateChart;
-  var leftSide = document.getElementById('leftSide');
-  var rightSide = document.getElementById('rightSide');
-  leftSide.addEventListener('click', function() {
+  $('#leftSide').on('click', function(e) {
     Tracker.leftVotes++;
-    var leftScore = document.getElementById('leftScore');
-    leftScore.textContent = Tracker.leftVotes;
+    $('#leftScore').text(Tracker.leftVotes);
+    images[Tracker.newLeftImage].votes++;
     Tracker.newImages();
     Tracker.updateChart();
   });
-  rightSide.addEventListener('click', function() {
+  $('#rightSide').on('click', function(e) {
     Tracker.rightVotes++;
-    var rightScore = document.getElementById('rightScore');
-    rightScore.textContent = Tracker.rightVotes;
+    $('#rightScore').text(Tracker.rightVotes);
+    images[Tracker.newRightImage].votes++;
     Tracker.newImages();
     Tracker.updateChart();
   });

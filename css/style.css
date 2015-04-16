@@ -2,6 +2,10 @@ body {
   font-family: 'Permanent Marker', cursive;
   background-color: lightgrey;
 }
+table {
+  width: 80%;
+  margin: 0 auto;
+}
 .voteArea:hover {
   border: 5px black solid;
   background-color: grey;
