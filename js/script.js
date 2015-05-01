@@ -10,14 +10,10 @@ $(function() {
   };
   //render expects a single Photo object from the images array
   Photo.prototype.render = function(photo) {
-    var newTr = document.createElement('tr');
-    var newTh = document.createElement('th');
-    var newTd = document.createElement('td');
-    newTh.textContent = photo.name;
-    newTd.textContent = photo.votes;
-    newTr.appendChild(newTh);
-    newTr.appendChild(newTd);
-    return newTr;
+    var $td = $('<td></td>').text(photo.votes);
+    var $th = $('<th></th>').text(photo.name);
+    var $tr = $('<tr></tr>').append($th).append($td);
+    return $tr[0];
   };
   Photo.prototype.randomName = function() {
     var arrayNum = Math.floor(Math.random() * names.length);
@@ -43,8 +39,8 @@ $(function() {
       while(this.newLeftImage === this.newRightImage) {
         this.newRightImage = this.randomImage();
       }
-      $('#leftImage').html('<img src="' + images[this.newLeftImage].url + '" />');
-      $('#rightImage').html('<img src="' + images[this.newRightImage].url + '"/>');
+      $('#leftImage').html('<h1>'+ images[this.newLeftImage].name +'</h1><img src="' + images[this.newLeftImage].url + '" />');
+      $('#rightImage').html('<h1>'+ images[this.newRightImage].name +'</h1><img src="' + images[this.newRightImage].url + '"/>');
     },
     updateChart: function () {
 
