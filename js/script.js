@@ -2,9 +2,8 @@ $(function() {
   var images = [];
   var names = ["Mittens","Whiskers","Mr. Bojangles","Patches","Samuel","Randall","Pat","Nancy","Laura","Tina","Alonzo","Snow","Eben","Titan"];
   var chart;
-  var imagePaths = ["01.jpg","02.jpg","03.jpg","04.jpg","05.jpg","06.jpg","07.jpg","08.jpg","09.jpg","10.jpg","11.jpg","12.jpg","13.jpg","14.jpg"];
   var Photo = function(url) {
-    this.url = 'img/' + url;
+    this.url = url;
     this.votes = 0;
     this.name = this.randomName();
   };
@@ -22,9 +21,6 @@ $(function() {
     return newName;
   }
   var sortedImages;
-  imagePaths.forEach(function(image) {
-    images.push(new Photo(image));
-  });
   var Tracker = {
     leftVotes: 0,
     rightVotes: 0,
@@ -67,6 +63,20 @@ $(function() {
       });
     }
   };
+  var getAJAXCats = function() {
+    $.ajax({
+      url: 'https://api.imgur.com/3/album/DDoWy/images',
+      headers: {'Authorization': 'Client-ID f47ba00c94ba70d'}
+    })
+    .done(function(data) {
+      console.log(data.data);
+      data.data.forEach(function(image) {
+        images.push(new Photo(image.link));
+      });
+      Tracker.newImages();
+    });
+
+  };
   var scoreChart = document.getElementById('scoreChart').getContext('2d');
   var pieData = [
     {
@@ -86,8 +96,8 @@ $(function() {
     segmentShowStroke : false,
     animateScale : false
   }
+  getAJAXCats();
   chart = new Chart(scoreChart).Pie(pieData, pieOptions);
-  Tracker.newImages();
   window.images = images;
   window.Tracker = Tracker;
 });
