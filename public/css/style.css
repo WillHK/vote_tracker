@@ -1,0 +1,38 @@
+body {
+  font-family: 'Permanent Marker', cursive;
+  background-color: lightgrey;
+}
+table {
+  width: 80%;
+  margin: 0 auto;
+}
+.voteArea:hover {
+  border: 5px black solid;
+  background-color: grey;
+}
+#yoda {
+  height: 250px;
+  width: 442px;
+  margin: 0 auto;
+}
+#yodapic {
+  height: 100%;
+  width: 100%;
+}
+#container {
+  width: 90%;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+#kittenWarz {
+  margin: 0 auto;
+  width: 50%;
+}
+.voteArea {
+  border: 5px lightgrey solid;
+  height: 325px;
+  width: 250px;
+  padding: 1em;
+}
